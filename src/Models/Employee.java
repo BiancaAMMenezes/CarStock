@@ -4,6 +4,9 @@
  */
 package Models;
 
+import static Connection.ConnectionFactory.CreateConnectionToMySql;
+import java.sql.*;
+
 /**
  *
  * @author bianc
@@ -18,6 +21,8 @@ public class Employee {
     private String PhoneNumber;
     private String Password;
 
+    public Employee(){}
+    
     public Employee(int Id, String FirstName, String LastName, String Username, String Email, String PhoneNumber, String Password) {
         this.Id = Id;
         this.FirstName = FirstName;
@@ -83,5 +88,28 @@ public class Employee {
     public void setPassword(String Password) {
         this.Password = Password;
     }
+    
+    public boolean VerifyRegistration(String email, String password) throws Exception {
+        try {
+            Connection con = null;
+            Statement st = null;
+            ResultSet rs = null;
+            con = CreateConnectionToMySql();
+            st = (Statement) con.createStatement();
+            
+            rs = st.executeQuery("SELECT * FROM tb_employee WHERE Email = '" + email + "' AND password = '" + password + "'");
 
+            if (rs.next()) {
+                System.out.println("Email and password are correct.");
+                return true;
+            }
+            else{
+                System.out.println("Email or password are wrong.");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("Connection failed. Error message: " + e.getMessage());
+            throw e;
+        }       
+    }
 }

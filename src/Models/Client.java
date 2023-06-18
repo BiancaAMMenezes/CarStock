@@ -4,6 +4,10 @@
  */
 package Models;
 
+import static Connection.ConnectionFactory.CreateConnectionToMySql;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Date;
 
 /**
@@ -88,6 +92,16 @@ public class Client {
         this.BithDate = BithDate;
     }
 
-    
+    public boolean RegisterClient() throws Exception{
+        Connection con = null;
+            Statement st = null;
+            ResultSet rs = null;
+            con = CreateConnectionToMySql();
+            st = (Statement) con.createStatement();
+            
+            rs = st.executeQuery("");
+            
+            return true;
+    }
     
 }
