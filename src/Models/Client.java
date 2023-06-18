@@ -22,12 +22,11 @@ public class Client {
     private String Email;
     private String PhoneNumber;
     private String Address;
-    private Date BithDate;
+    private String BithDate;
 
-    public Client(String Cpf, String Name, String LastName, String Email, String PhoneNumber, String Address, Date BithDate) {
+    public Client(String Cpf, String Name, String Email, String Address, String BithDate) {
         this.Cpf = Cpf;
         this.Name = Name;
-        this.LastName = LastName;
         this.Email = Email;
         this.PhoneNumber = PhoneNumber;
         this.Address = Address;
@@ -84,24 +83,24 @@ public class Client {
         this.Address = Address;
     }
 
-    public Date getBithDate() {
+    public String getBithDate() {
         return BithDate;
     }
 
-    public void setBithDate(Date BithDate) {
+    public void setBithDate(String BithDate) {
         this.BithDate = BithDate;
     }
 
     public boolean RegisterClient() throws Exception{
         Connection con = null;
-            Statement st = null;
-            ResultSet rs = null;
-            con = CreateConnectionToMySql();
-            st = (Statement) con.createStatement();
-            
-            rs = st.executeQuery("");
-            
-            return true;
+        Statement st = null;
+        ResultSet rs = null;
+        con = CreateConnectionToMySql();
+        st = (Statement) con.createStatement();
+        String query = String.format("INSERT INTO tb_client ('Cpf', 'Name', 'Email', 'Birth_Date', 'Address') "
+                + "VALUES ('%s','%s','%s','%s','%s')", this.Cpf, this.Name, this.Email, this.BithDate, this.Address);
+        rs = st.executeQuery(query);
+        return true;
     }
     
 }

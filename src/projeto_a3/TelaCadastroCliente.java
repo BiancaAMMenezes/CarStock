@@ -4,6 +4,9 @@
  */
 package projeto_a3;
 
+import Models.Client;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaCadastroCliente extends javax.swing.JFrame {
@@ -193,11 +196,22 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_BotaoCancelMouseClicked
 
     private void BotaoRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaoRegisterMouseClicked
- 
+
     }//GEN-LAST:event_BotaoRegisterMouseClicked
 
     private void BotaoRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoRegisterActionPerformed
-  DefaultTableModel Tabela = (DefaultTableModel) this.TabelaClientes.getModel();
+        System.out.println("Entrou no método");
+        try {
+            System.out.println("Entrou no try");
+            Client client = new Client(this.CaixaCPF.getText(),
+                    this.CaixaName.getText(), this.CaixaEmail.getText(), this.CaixaAddress.getText(), this.CaixaBirth.getText());
+            System.out.println("Client = " + client.getName());
+            client.RegisterClient();
+            System.out.println("Client registred.");
+        } catch (Exception ex) {
+            Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DefaultTableModel Tabela = (DefaultTableModel) this.TabelaClientes.getModel();
         Tabela.addRow(new Object[] {this.CaixaName.getText(), this.CaixaCPF.getText(),this.CaixaBirth.getText(), this.CaixaEmail.getText(), this.CaixaAddress.getText(),});
     }//GEN-LAST:event_BotaoRegisterActionPerformed
 
