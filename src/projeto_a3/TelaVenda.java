@@ -4,7 +4,10 @@
  */
 package projeto_a3;
 
+import Models.Sale;
 import javax.swing.table.DefaultTableModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,9 +40,9 @@ public class TelaVenda extends javax.swing.JFrame {
         TextoDate = new javax.swing.JLabel();
         CaixaDate = new javax.swing.JTextField();
         TextoVehicle = new javax.swing.JLabel();
-        CaixaVehicle = new javax.swing.JTextField();
+        CaixaVehiclePlate = new javax.swing.JTextField();
         TextoPlate = new javax.swing.JLabel();
-        CaixaPlate = new javax.swing.JTextField();
+        CaixaEmployeeId = new javax.swing.JTextField();
         TextoPrice = new javax.swing.JLabel();
         CaixaPrice = new javax.swing.JTextField();
         CaixaDescription = new javax.swing.JTextField();
@@ -64,13 +67,13 @@ public class TelaVenda extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
-        TextoClient.setText("Client:");
+        TextoClient.setText("CPF Client:");
 
         TextoDate.setText("Date:");
 
-        TextoVehicle.setText("Vehicle:");
+        TextoVehicle.setText("Vehicle Plate:");
 
-        TextoPlate.setText("Plate:");
+        TextoPlate.setText("Employee Id:");
 
         TextoPrice.setText("Price:");
 
@@ -135,7 +138,7 @@ public class TelaVenda extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(TextoVehicle)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(CaixaVehicle))
+                                .addComponent(CaixaVehiclePlate))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(TextoClient)
                                 .addGap(18, 18, 18)
@@ -151,8 +154,8 @@ public class TelaVenda extends javax.swing.JFrame {
                             .addComponent(TextoPrice))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CaixaPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(CaixaPlate)
+                            .addComponent(CaixaPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                            .addComponent(CaixaEmployeeId)
                             .addComponent(CaixaDate))))
                 .addGap(49, 49, 49))
         );
@@ -173,9 +176,9 @@ public class TelaVenda extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextoVehicle)
-                    .addComponent(CaixaVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CaixaVehiclePlate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextoPlate)
-                    .addComponent(CaixaPlate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CaixaEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextoPrice)
@@ -195,8 +198,17 @@ public class TelaVenda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotaoConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoConfirmActionPerformed
+        try {
+            Sale sale = new Sale(this.CaixaDate.getText(),
+                    this.CaixaDescription.getText(), this.CaixaVehiclePlate.getText(),
+                    this.CaixaEmployeeId.getText(), this.CaixaClient.getText());
+            sale.Register();
+            System.out.println("Client registred.");
+        } catch (Exception ex) {
+            Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         DefaultTableModel Tabela = (DefaultTableModel) this.TabelaVenda.getModel();
-        Tabela.addRow(new Object[] {this.CaixaClient.getText(), this.CaixaVehicle.getText(), this.CaixaDate.getText(), this.CaixaPlate.getText(), this.CaixaPrice.getText(), this.CaixaDescription.getText()});       
+        Tabela.addRow(new Object[] {this.CaixaClient.getText(), this.CaixaVehiclePlate.getText(), this.CaixaDate.getText(), this.CaixaEmployeeId.getText(), this.CaixaPrice.getText(), this.CaixaDescription.getText()});       
     }//GEN-LAST:event_BotaoConfirmActionPerformed
 
     private void BotaCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaCancelMouseClicked
@@ -245,9 +257,9 @@ public class TelaVenda extends javax.swing.JFrame {
     private javax.swing.JTextField CaixaClient;
     private javax.swing.JTextField CaixaDate;
     private javax.swing.JTextField CaixaDescription;
-    private javax.swing.JTextField CaixaPlate;
+    private javax.swing.JTextField CaixaEmployeeId;
     private javax.swing.JTextField CaixaPrice;
-    private javax.swing.JTextField CaixaVehicle;
+    private javax.swing.JTextField CaixaVehiclePlate;
     private javax.swing.JLabel ImagemTopo;
     private javax.swing.JTable TabelaVenda;
     private javax.swing.JLabel TextoClient;

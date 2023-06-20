@@ -5,10 +5,7 @@
 package Models;
 
 import static Connection.ConnectionFactory.CreateConnectionToMySql;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.Date;
+import java.sql.*;
 
 /**
  *
@@ -91,15 +88,15 @@ public class Client {
         this.BithDate = BithDate;
     }
 
-    public boolean RegisterClient() throws Exception{
+    public boolean Register() throws Exception{
         Connection con = null;
         Statement st = null;
-        ResultSet rs = null;
         con = CreateConnectionToMySql();
         st = (Statement) con.createStatement();
-        String query = String.format("INSERT INTO tb_client ('Cpf', 'Name', 'Email', 'Birth_Date', 'Address') "
+        String query = String.format("INSERT INTO tb_client (Cpf, Name, Email, Birth_Date, Address) "
                 + "VALUES ('%s','%s','%s','%s','%s')", this.Cpf, this.Name, this.Email, this.BithDate, this.Address);
-        rs = st.executeQuery(query);
+        System.out.println(query);
+        st.execute(query);
         return true;
     }
     

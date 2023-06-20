@@ -94,11 +94,14 @@
                           <Component id="TextoPrice" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="ComboBoxColor" max="32767" attributes="0"/>
-                          <Component id="ComboBoxBrand" pref="148" max="32767" attributes="0"/>
-                          <Component id="ComboBoxYear" max="32767" attributes="0"/>
-                          <Component id="CaixaPrice" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="CaixaYear" alignment="0" max="32767" attributes="0"/>
+                          <Component id="CaixaColor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="CaixaPrice" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="CaixaBrand" min="-2" pref="108" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -125,22 +128,22 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="TextoModelVehicle" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TextoBrand" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ComboBoxBrand" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="CaixaModelVehicle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CaixaBrand" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="TextoPlateVehicle" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="CaixaPlateVehicle" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TextoYear" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ComboBoxYear" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CaixaYear" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="CaixaChassi" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ComboBoxColor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TextoColor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TextoChassi" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CaixaColor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -194,62 +197,6 @@
         <Property name="text" type="java.lang.String" value="Brand:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="ComboBoxBrand">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="45">
-            <StringItem index="0" value="Abarth"/>
-            <StringItem index="1" value="Aiways"/>
-            <StringItem index="2" value="Alfa Romeo"/>
-            <StringItem index="3" value="Alpine"/>
-            <StringItem index="4" value="Aston Martin"/>
-            <StringItem index="5" value="Audi"/>
-            <StringItem index="6" value="Bentley"/>
-            <StringItem index="7" value="BMW"/>
-            <StringItem index="8" value="BYD"/>
-            <StringItem index="9" value="Citroen"/>
-            <StringItem index="10" value="Cupra"/>
-            <StringItem index="11" value="Dacia"/>
-            <StringItem index="12" value="DS"/>
-            <StringItem index="13" value="Ferrari"/>
-            <StringItem index="14" value="Fiat"/>
-            <StringItem index="15" value="Ford"/>
-            <StringItem index="16" value="Honda"/>
-            <StringItem index="17" value="Hyundai"/>
-            <StringItem index="18" value="Jaguar"/>
-            <StringItem index="19" value="Jeep"/>
-            <StringItem index="20" value="KIA"/>
-            <StringItem index="21" value="Lamborghini"/>
-            <StringItem index="22" value="Land Rover"/>
-            <StringItem index="23" value="Lexus"/>
-            <StringItem index="24" value="Lotus"/>
-            <StringItem index="25" value="Maserati"/>
-            <StringItem index="26" value="Mazda"/>
-            <StringItem index="27" value="Mercedes-Benz"/>
-            <StringItem index="28" value="MG"/>
-            <StringItem index="29" value="Mini"/>
-            <StringItem index="30" value="Mitsubish"/>
-            <StringItem index="31" value="Nissan"/>
-            <StringItem index="32" value="Opel"/>
-            <StringItem index="33" value="Peugeot"/>
-            <StringItem index="34" value="Polester"/>
-            <StringItem index="35" value="Porsche"/>
-            <StringItem index="36" value="Renault"/>
-            <StringItem index="37" value="SEAT"/>
-            <StringItem index="38" value="Skoda"/>
-            <StringItem index="39" value="Smart"/>
-            <StringItem index="40" value="Suzuki"/>
-            <StringItem index="41" value="Tesla"/>
-            <StringItem index="42" value="Toyota"/>
-            <StringItem index="43" value="Volkswagen"/>
-            <StringItem index="44" value="Volvo"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JLabel" name="TextoPlateVehicle">
       <Properties>
         <Property name="text" type="java.lang.String" value="Plate Vehicle:"/>
@@ -262,150 +209,12 @@
         <Property name="text" type="java.lang.String" value="Year:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="ComboBoxYear">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="104">
-            <StringItem index="0" value="1920"/>
-            <StringItem index="1" value="1921"/>
-            <StringItem index="2" value="1922"/>
-            <StringItem index="3" value="1923"/>
-            <StringItem index="4" value="1924"/>
-            <StringItem index="5" value="1925"/>
-            <StringItem index="6" value="1926"/>
-            <StringItem index="7" value="1927"/>
-            <StringItem index="8" value="1928"/>
-            <StringItem index="9" value="1929"/>
-            <StringItem index="10" value="1930"/>
-            <StringItem index="11" value="1931"/>
-            <StringItem index="12" value="1932"/>
-            <StringItem index="13" value="1933"/>
-            <StringItem index="14" value="1934"/>
-            <StringItem index="15" value="1935"/>
-            <StringItem index="16" value="1936"/>
-            <StringItem index="17" value="1937"/>
-            <StringItem index="18" value="1938"/>
-            <StringItem index="19" value="1939"/>
-            <StringItem index="20" value="1940"/>
-            <StringItem index="21" value="1941"/>
-            <StringItem index="22" value="1942"/>
-            <StringItem index="23" value="1943"/>
-            <StringItem index="24" value="1944"/>
-            <StringItem index="25" value="1945"/>
-            <StringItem index="26" value="1946"/>
-            <StringItem index="27" value="1947"/>
-            <StringItem index="28" value="1948"/>
-            <StringItem index="29" value="1949"/>
-            <StringItem index="30" value="1950"/>
-            <StringItem index="31" value="1951"/>
-            <StringItem index="32" value="1952"/>
-            <StringItem index="33" value="1953"/>
-            <StringItem index="34" value="1954"/>
-            <StringItem index="35" value="1955"/>
-            <StringItem index="36" value="1956"/>
-            <StringItem index="37" value="1957"/>
-            <StringItem index="38" value="1958"/>
-            <StringItem index="39" value="1959"/>
-            <StringItem index="40" value="1960"/>
-            <StringItem index="41" value="1961"/>
-            <StringItem index="42" value="1962"/>
-            <StringItem index="43" value="1963"/>
-            <StringItem index="44" value="1964"/>
-            <StringItem index="45" value="1965"/>
-            <StringItem index="46" value="1966"/>
-            <StringItem index="47" value="1967"/>
-            <StringItem index="48" value="1968"/>
-            <StringItem index="49" value="1969"/>
-            <StringItem index="50" value="1970"/>
-            <StringItem index="51" value="1971"/>
-            <StringItem index="52" value="1972"/>
-            <StringItem index="53" value="1973"/>
-            <StringItem index="54" value="1974"/>
-            <StringItem index="55" value="1975"/>
-            <StringItem index="56" value="1976"/>
-            <StringItem index="57" value="1977"/>
-            <StringItem index="58" value="1978"/>
-            <StringItem index="59" value="1979"/>
-            <StringItem index="60" value="1980"/>
-            <StringItem index="61" value="1981"/>
-            <StringItem index="62" value="1982"/>
-            <StringItem index="63" value="1983"/>
-            <StringItem index="64" value="1984"/>
-            <StringItem index="65" value="1985"/>
-            <StringItem index="66" value="1986"/>
-            <StringItem index="67" value="1987"/>
-            <StringItem index="68" value="1988"/>
-            <StringItem index="69" value="1989"/>
-            <StringItem index="70" value="1990"/>
-            <StringItem index="71" value="1991"/>
-            <StringItem index="72" value="1992"/>
-            <StringItem index="73" value="1993"/>
-            <StringItem index="74" value="1994"/>
-            <StringItem index="75" value="1995"/>
-            <StringItem index="76" value="1996"/>
-            <StringItem index="77" value="1997"/>
-            <StringItem index="78" value="1998"/>
-            <StringItem index="79" value="1999"/>
-            <StringItem index="80" value="2000"/>
-            <StringItem index="81" value="2001"/>
-            <StringItem index="82" value="2002"/>
-            <StringItem index="83" value="2003"/>
-            <StringItem index="84" value="2004"/>
-            <StringItem index="85" value="2005"/>
-            <StringItem index="86" value="2006"/>
-            <StringItem index="87" value="2007"/>
-            <StringItem index="88" value="2008"/>
-            <StringItem index="89" value="2009"/>
-            <StringItem index="90" value="2010"/>
-            <StringItem index="91" value="2011"/>
-            <StringItem index="92" value="2012"/>
-            <StringItem index="93" value="2013"/>
-            <StringItem index="94" value="2014"/>
-            <StringItem index="95" value="2015"/>
-            <StringItem index="96" value="2016"/>
-            <StringItem index="97" value="2017"/>
-            <StringItem index="98" value="2018"/>
-            <StringItem index="99" value="2019"/>
-            <StringItem index="100" value="2020"/>
-            <StringItem index="101" value="2021"/>
-            <StringItem index="102" value="2022"/>
-            <StringItem index="103" value="2023"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JLabel" name="TextoChassi">
       <Properties>
         <Property name="text" type="java.lang.String" value="Chassi:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="CaixaChassi">
-    </Component>
-    <Component class="javax.swing.JComboBox" name="ComboBoxColor">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="12">
-            <StringItem index="0" value="Blue"/>
-            <StringItem index="1" value="Red"/>
-            <StringItem index="2" value="Yellow"/>
-            <StringItem index="3" value="Green"/>
-            <StringItem index="4" value="Orange"/>
-            <StringItem index="5" value="Purple"/>
-            <StringItem index="6" value="Black"/>
-            <StringItem index="7" value="White"/>
-            <StringItem index="8" value="Gray"/>
-            <StringItem index="9" value="Pink"/>
-            <StringItem index="10" value="Brown"/>
-            <StringItem index="11" value="Golden"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="TextoColor">
       <Properties>
@@ -529,6 +338,18 @@
           <Image iconType="3" name="/projeto_a3/imagens/Inicial.png"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="CaixaBrand">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CaixaBrandActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="CaixaYear">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CaixaYearActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="CaixaColor">
     </Component>
   </SubComponents>
 </Form>

@@ -4,7 +4,12 @@
  */
 package projeto_a3;
 
+import Models.Vehicle;
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
 import javax.swing.table.DefaultTableModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,14 +40,11 @@ public class TelaCadastroVeiculos extends javax.swing.JFrame {
         TextoTopo = new javax.swing.JLabel();
         TextoModelVehicle = new javax.swing.JLabel();
         TextoBrand = new javax.swing.JLabel();
-        ComboBoxBrand = new javax.swing.JComboBox<>();
         TextoPlateVehicle = new javax.swing.JLabel();
         CaixaPlateVehicle = new javax.swing.JTextField();
         TextoYear = new javax.swing.JLabel();
-        ComboBoxYear = new javax.swing.JComboBox<>();
         TextoChassi = new javax.swing.JLabel();
         CaixaChassi = new javax.swing.JTextField();
-        ComboBoxColor = new javax.swing.JComboBox<>();
         TextoColor = new javax.swing.JLabel();
         BotaoRegister = new javax.swing.JButton();
         TextoDescription = new javax.swing.JLabel();
@@ -54,6 +56,9 @@ public class TelaCadastroVeiculos extends javax.swing.JFrame {
         TextoPrice = new javax.swing.JLabel();
         CaixaPrice = new javax.swing.JTextField();
         ImagemTopo = new javax.swing.JLabel();
+        CaixaBrand = new javax.swing.JTextField();
+        CaixaYear = new javax.swing.JTextField();
+        CaixaColor = new javax.swing.JTextField();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -79,17 +84,11 @@ public class TelaCadastroVeiculos extends javax.swing.JFrame {
 
         TextoBrand.setText("Brand:");
 
-        ComboBoxBrand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abarth", "Aiways", "Alfa Romeo", "Alpine", "Aston Martin", "Audi", "Bentley", "BMW", "BYD", "Citroen", "Cupra", "Dacia", "DS", "Ferrari", "Fiat", "Ford", "Honda", "Hyundai", "Jaguar", "Jeep", "KIA", "Lamborghini", "Land Rover", "Lexus", "Lotus", "Maserati", "Mazda", "Mercedes-Benz", "MG", "Mini", "Mitsubish", "Nissan", "Opel", "Peugeot", "Polester", "Porsche", "Renault", "SEAT", "Skoda", "Smart", "Suzuki", "Tesla", "Toyota", "Volkswagen", "Volvo" }));
-
         TextoPlateVehicle.setText("Plate Vehicle:");
 
         TextoYear.setText("Year:");
 
-        ComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023" }));
-
         TextoChassi.setText("Chassi:");
-
-        ComboBoxColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Red", "Yellow", "Green", "Orange", "Purple", "Black", "White", "Gray", "Pink", "Brown", "Golden" }));
 
         TextoColor.setText("Color:");
 
@@ -140,6 +139,18 @@ public class TelaCadastroVeiculos extends javax.swing.JFrame {
 
         ImagemTopo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projeto_a3/imagens/Inicial.png"))); // NOI18N
 
+        CaixaBrand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CaixaBrandActionPerformed(evt);
+            }
+        });
+
+        CaixaYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CaixaYearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,11 +190,13 @@ public class TelaCadastroVeiculos extends javax.swing.JFrame {
                             .addComponent(TextoColor)
                             .addComponent(TextoPrice))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ComboBoxColor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ComboBoxBrand, 0, 148, Short.MAX_VALUE)
-                            .addComponent(ComboBoxYear, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CaixaPrice)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CaixaYear)
+                            .addComponent(CaixaColor)
+                            .addComponent(CaixaPrice)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(CaixaBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BotaoCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -204,20 +217,20 @@ public class TelaCadastroVeiculos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextoModelVehicle)
                     .addComponent(TextoBrand)
-                    .addComponent(ComboBoxBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CaixaModelVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CaixaModelVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CaixaBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextoPlateVehicle)
                     .addComponent(CaixaPlateVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextoYear)
-                    .addComponent(ComboBoxYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CaixaYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CaixaChassi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboBoxColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextoColor)
-                    .addComponent(TextoChassi))
+                    .addComponent(TextoChassi)
+                    .addComponent(CaixaColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CaixaDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,10 +259,29 @@ public class TelaCadastroVeiculos extends javax.swing.JFrame {
     }//GEN-LAST:event_BotaoRegisterMouseClicked
 
     private void BotaoRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoRegisterActionPerformed
+        try {
+            Vehicle vehicle = new Vehicle(this.CaixaPlateVehicle.getText(),
+                    this.CaixaChassi.getText(), this.CaixaModelVehicle.getText(),
+                    this.CaixaBrand.getText(), parseInt(this.CaixaYear.getText()), 
+                    this.CaixaColor.getText(), this.CaixaDescription.getText(),
+                    parseDouble(this.CaixaPrice.getText()));
+            vehicle.Register();
+            System.out.println("Vehicle registred.");
+        } catch (Exception ex) {
+            Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         DefaultTableModel Tabela = (DefaultTableModel) this.TabelaVeiculos.getModel();
-        Tabela.addRow(new Object[] {this.CaixaModelVehicle.getText(), this.CaixaPlateVehicle.getText(), this.CaixaChassi.getText(), this.ComboBoxBrand.getSelectedItem(), this.ComboBoxYear.getSelectedItem(), this.ComboBoxColor.getSelectedItem(), this.CaixaDescription.getText(), this.CaixaPrice.getText()});
+        Tabela.addRow(new Object[] {this.CaixaModelVehicle.getText(), this.CaixaPlateVehicle.getText(), this.CaixaChassi.getText(), this.CaixaBrand.getText(), this.CaixaYear.getText(), this.CaixaColor.getText(), this.CaixaDescription.getText(), this.CaixaPrice.getText()});
 
     }//GEN-LAST:event_BotaoRegisterActionPerformed
+
+    private void CaixaBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CaixaBrandActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CaixaBrandActionPerformed
+
+    private void CaixaYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CaixaYearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CaixaYearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,14 +321,14 @@ public class TelaCadastroVeiculos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoCancel;
     private javax.swing.JButton BotaoRegister;
+    private javax.swing.JTextField CaixaBrand;
     private javax.swing.JTextField CaixaChassi;
+    private javax.swing.JTextField CaixaColor;
     private javax.swing.JTextField CaixaDescription;
     private javax.swing.JTextField CaixaModelVehicle;
     private javax.swing.JTextField CaixaPlateVehicle;
     private javax.swing.JTextField CaixaPrice;
-    private javax.swing.JComboBox<String> ComboBoxBrand;
-    private javax.swing.JComboBox<String> ComboBoxColor;
-    private javax.swing.JComboBox<String> ComboBoxYear;
+    private javax.swing.JTextField CaixaYear;
     private javax.swing.JLabel ImagemTopo;
     private javax.swing.JSeparator Separador;
     private javax.swing.JTable TabelaVeiculos;

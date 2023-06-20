@@ -5,6 +5,8 @@
 package projeto_a3;
 
 import Models.Client;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -200,13 +202,11 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_BotaoRegisterMouseClicked
 
     private void BotaoRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoRegisterActionPerformed
-        System.out.println("Entrou no método");
         try {
-            System.out.println("Entrou no try");
             Client client = new Client(this.CaixaCPF.getText(),
-                    this.CaixaName.getText(), this.CaixaEmail.getText(), this.CaixaAddress.getText(), this.CaixaBirth.getText());
-            System.out.println("Client = " + client.getName());
-            client.RegisterClient();
+                    this.CaixaName.getText(), this.CaixaEmail.getText(),
+                    this.CaixaAddress.getText(), this.CaixaBirth.getText());
+            client.Register();
             System.out.println("Client registred.");
         } catch (Exception ex) {
             Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);

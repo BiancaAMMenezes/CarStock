@@ -4,6 +4,10 @@
  */
 package projeto_a3;
 
+import Models.Client;
+import Models.Employee;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.WindowConstants;
 
 /**
@@ -310,6 +314,17 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_CaixaPhoneNumberActionPerformed
 
     private void BotaoRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaoRegisterMouseClicked
+        try {
+            Employee employee = new Employee(this.CaixaFirstName.getText(),
+                    this.CaixaLastName.getText(), this.CaixaEmail.getText(),
+                    this.CaixaPhoneNumber.getText(), this.CaixaPassword.getText());
+            employee.Register();
+            System.out.println("Employee registred.");
+        } catch (Exception ex) {
+            Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         ConfirmarRegistro NovaTela = new ConfirmarRegistro ();
         NovaTela.setVisible(true);
         

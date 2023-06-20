@@ -62,7 +62,7 @@
                           <Group type="102" attributes="0">
                               <Component id="TextoVehicle" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="CaixaVehicle" max="32767" attributes="0"/>
+                              <Component id="CaixaVehiclePlate" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="TextoClient" min="-2" max="-2" attributes="0"/>
@@ -83,8 +83,8 @@
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="CaixaPrice" pref="147" max="32767" attributes="0"/>
-                          <Component id="CaixaPlate" max="32767" attributes="0"/>
+                          <Component id="CaixaPrice" pref="108" max="32767" attributes="0"/>
+                          <Component id="CaixaEmployeeId" max="32767" attributes="0"/>
                           <Component id="CaixaDate" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -111,9 +111,9 @@
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="TextoVehicle" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="CaixaVehicle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CaixaVehiclePlate" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TextoPlate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="CaixaPlate" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CaixaEmployeeId" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -164,7 +164,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="TextoClient">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Client:"/>
+        <Property name="text" type="java.lang.String" value="CPF Client:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="CaixaClient">
@@ -178,17 +178,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="TextoVehicle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Vehicle:"/>
+        <Property name="text" type="java.lang.String" value="Vehicle Plate:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="CaixaVehicle">
+    <Component class="javax.swing.JTextField" name="CaixaVehiclePlate">
     </Component>
     <Component class="javax.swing.JLabel" name="TextoPlate">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Plate:"/>
+        <Property name="text" type="java.lang.String" value="Employee Id:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="CaixaPlate">
+    <Component class="javax.swing.JTextField" name="CaixaEmployeeId">
     </Component>
     <Component class="javax.swing.JLabel" name="TextoPrice">
       <Properties>

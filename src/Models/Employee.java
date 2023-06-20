@@ -13,32 +13,20 @@ import java.sql.*;
  */
 public class Employee {
     
-    private int Id;
     private String FirstName;
     private String LastName;
-    private String Username;
     private String Email;
     private String PhoneNumber;
     private String Password;
 
     public Employee(){}
     
-    public Employee(int Id, String FirstName, String LastName, String Username, String Email, String PhoneNumber, String Password) {
-        this.Id = Id;
+    public Employee(String FirstName, String LastName, String Email, String PhoneNumber, String Password) {
         this.FirstName = FirstName;
         this.LastName = LastName;
-        this.Username = Username;
         this.Email = Email;
         this.PhoneNumber = PhoneNumber;
         this.Password = Password;
-    }
-    
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int Id) {
-        this.Id = Id;
     }
 
     public String getFirstName() {
@@ -55,14 +43,6 @@ public class Employee {
 
     public void setLastName(String LastName) {
         this.LastName = LastName;
-    }
-
-    public String getUsername() {
-        return Username;
-    }
-
-    public void setUsername(String Username) {
-        this.Username = Username;
     }
 
     public String getEmail() {
@@ -111,5 +91,18 @@ public class Employee {
             System.out.println("Connection failed. Error message: " + e.getMessage());
             throw e;
         }       
+    }
+    
+    public boolean Register() throws Exception{
+        Connection con = null;
+        Statement st = null;
+        con = CreateConnectionToMySql();
+        st = (Statement) con.createStatement();
+        String query = String.format("INSERT INTO tb_employee (First_Name, Last_Name, Email, Phone_number, password) "
+                + "VALUES ('%s','%s','%s','%s','%s')", this.FirstName, 
+                this.LastName, this.Email, this.PhoneNumber, this.Password);
+        System.out.println(query);
+        st.execute(query);
+        return true;
     }
 }

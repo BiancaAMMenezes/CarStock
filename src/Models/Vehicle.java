@@ -4,6 +4,11 @@
  */
 package Models;
 
+import static Connection.ConnectionFactory.CreateConnectionToMySql;
+import java.sql.Connection;
+import java.sql.Statement;
+
+
 
 /**
  *
@@ -94,4 +99,16 @@ public class Vehicle {
         this.Price = Price;
     }
     
+    public boolean Register() throws Exception{
+        Connection con = null;
+        Statement st = null;
+        con = CreateConnectionToMySql();
+        st = (Statement) con.createStatement();
+        String query = String.format("INSERT INTO tb_vehicle (Plate, Chassi, Model, Brand, Year, Color, Description, Price) "
+                + "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')", this.Plate, this.Chassi, this.Model, 
+                this.Brand, this.Year, this.Color, this.Description, this.Price);
+        System.out.println(query);
+        st.execute(query);
+        return true;
+    }
 }
