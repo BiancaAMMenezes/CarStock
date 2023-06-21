@@ -5,6 +5,7 @@
 package Models;
 
 import static Connection.ConnectionFactory.CreateConnectionToMySql;
+import Service.Service;
 import java.sql.*;
 
 /**
@@ -29,6 +30,8 @@ public class Client {
         this.Address = Address;
         this.BithDate = BithDate;
     }
+
+    public Client() {}
 
     
     
@@ -89,15 +92,40 @@ public class Client {
     }
 
     public boolean Register() throws Exception{
-        Connection con = null;
-        Statement st = null;
-        con = CreateConnectionToMySql();
-        st = (Statement) con.createStatement();
+        Service service = new Service();
         String query = String.format("INSERT INTO tb_client (Cpf, Name, Email, Birth_Date, Address) "
                 + "VALUES ('%s','%s','%s','%s','%s')", this.Cpf, this.Name, this.Email, this.BithDate, this.Address);
-        System.out.println(query);
-        st.execute(query);
-        return true;
+        return service.Insert(query);
+    }
+
+    public boolean IsRegisteredClient(String cpf) throws Exception {
+        try {
+            Service service = new Service();
+            ResultSet rs = service.Select("SELECT * FROM tb_client WHERE Cpf = '" + cpf + "'");
+
+            if (rs.next()) {
+                System.out.println("Client cpf: " + cpf + " found.");
+                return true;
+            }
+            else{
+                System.out.println("Client cpf: " + cpf + " not found.");
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Connection failed. Error message: " + e.getMessage());
+            throw e;
+        }
     }
     
+    public ResultSet GetClients() throws Exception {
+        try {
+            Service service = new Service();
+
+            return service.Select("SELECT * FROM tb_client");
+        } catch (Exception e) {
+            System.out.println("Connection failed. Error message: " + e.getMessage());
+            throw e;
+        }
+    }
 }

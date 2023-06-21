@@ -10,6 +10,7 @@ import static java.lang.Integer.parseInt;
 import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.ResultSet;
 
 /**
  *
@@ -22,8 +23,22 @@ public class TelaCadastroVeiculos extends javax.swing.JFrame {
      */
     public TelaCadastroVeiculos() {
         initComponents();
-
-
+        ShowVehicles();
+    }
+    
+    private void ShowVehicles() {
+        try {
+            Vehicle vehicle = new Vehicle();
+            ResultSet result = vehicle.GetVehicles();
+            ((DefaultTableModel) this.TabelaVeiculos.getModel()).setRowCount(0);
+            DefaultTableModel Tabela = (DefaultTableModel) this.TabelaVeiculos.getModel();
+            while (result.next()) {
+                Tabela.addRow(new Object[]{result.getString(1), result.getString(2), result.getString(3), result.getString(4),
+                    result.getString(5), result.getString(6), result.getString(7), result.getString(8)});
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -119,7 +134,7 @@ public class TelaCadastroVeiculos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Model ", "Plate", "Chassi", "Brand", "Year", "Color", "Descriptions", "Price"
+                "Plate ", "Chassi ", "Model ", "Brand", "Year", "Color", "Descriptions", "Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -267,12 +282,10 @@ public class TelaCadastroVeiculos extends javax.swing.JFrame {
                     parseDouble(this.CaixaPrice.getText()));
             vehicle.Register();
             System.out.println("Vehicle registred.");
+            ShowVehicles();
         } catch (Exception ex) {
             Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        DefaultTableModel Tabela = (DefaultTableModel) this.TabelaVeiculos.getModel();
-        Tabela.addRow(new Object[] {this.CaixaModelVehicle.getText(), this.CaixaPlateVehicle.getText(), this.CaixaChassi.getText(), this.CaixaBrand.getText(), this.CaixaYear.getText(), this.CaixaColor.getText(), this.CaixaDescription.getText(), this.CaixaPrice.getText()});
-
     }//GEN-LAST:event_BotaoRegisterActionPerformed
 
     private void CaixaBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CaixaBrandActionPerformed

@@ -4,7 +4,11 @@
  */
 package projeto_a3;
 
+import Models.Client;
+import Models.Employee;
 import Models.Sale;
+import Models.Vehicle;
+import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +24,22 @@ public class TelaVenda extends javax.swing.JFrame {
      */
     public TelaVenda() {
         initComponents();
+        ShowSales();
+    }
+    
+    private void ShowSales() {
+        try {
+            Sale sale = new Sale();
+            ResultSet result = sale.GetSales();
+            ((DefaultTableModel) this.TabelaVenda.getModel()).setRowCount(0);
+            DefaultTableModel Tabela = (DefaultTableModel) this.TabelaVenda.getModel();
+            while (result.next()) {
+                Tabela.addRow(new Object[]{result.getString(1), result.getString(2), result.getString(3), 
+                    result.getString(4), result.getString(5), result.getString(6)});
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -85,7 +105,7 @@ public class TelaVenda extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Client", "Vehicle", "Date", "Plate", "Price", "Description"
+                "Id Sale", "Date", "Description", "Plate", "CPF Client", "Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -99,6 +119,11 @@ public class TelaVenda extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TabelaVenda);
 
         BotaoConfirm.setText("Confirm");
+        BotaoConfirm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotaoConfirmMouseClicked(evt);
+            }
+        });
         BotaoConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaoConfirmActionPerformed(evt);
@@ -198,23 +223,40 @@ public class TelaVenda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotaoConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoConfirmActionPerformed
-        try {
-            Sale sale = new Sale(this.CaixaDate.getText(),
-                    this.CaixaDescription.getText(), this.CaixaVehiclePlate.getText(),
-                    this.CaixaEmployeeId.getText(), this.CaixaClient.getText());
-            sale.Register();
-            System.out.println("Client registred.");
-        } catch (Exception ex) {
-            Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        DefaultTableModel Tabela = (DefaultTableModel) this.TabelaVenda.getModel();
-        Tabela.addRow(new Object[] {this.CaixaClient.getText(), this.CaixaVehiclePlate.getText(), this.CaixaDate.getText(), this.CaixaEmployeeId.getText(), this.CaixaPrice.getText(), this.CaixaDescription.getText()});       
+               
     }//GEN-LAST:event_BotaoConfirmActionPerformed
 
     private void BotaCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaCancelMouseClicked
         TelaVenda FecharTela = new TelaVenda();
         FecharTela.setVisible(false); dispose();
     }//GEN-LAST:event_BotaCancelMouseClicked
+
+    private void BotaoConfirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaoConfirmMouseClicked
+        try {
+            Client client = new Client();
+            Vehicle vehicle = new Vehicle();
+            Employee employee = new Employee();
+            if(client.IsRegisteredClient(this.CaixaClient.getText()) 
+                    && vehicle.IsRegisteredVehicle(this.CaixaVehiclePlate.getText())
+                    && employee.IsRegisteredEmployee(this.CaixaEmployeeId.getText())){
+                Sale sale = new Sale(this.CaixaDate.getText(),
+                    this.CaixaDescription.getText(), this.CaixaVehiclePlate.getText(),
+                    this.CaixaEmployeeId.getText(), this.CaixaClient.getText());
+                sale.Register();
+                System.out.println("Client registred.");
+                ShowSales();
+            }
+            else{
+                DadosInvalidos NovaTela = new DadosInvalidos();
+                NovaTela.setVisible(true);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DefaultTableModel Tabela = (DefaultTableModel) this.TabelaVenda.getModel();
+        
+        Tabela.addRow(new Object[] {});
+    }//GEN-LAST:event_BotaoConfirmMouseClicked
 
     /**
      * @param args the command line arguments

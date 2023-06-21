@@ -98,7 +98,7 @@ public class TelaAbertura extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Username or email");
+        jLabel1.setText("Email");
 
         jLabel2.setText("Password");
 
@@ -188,7 +188,10 @@ public class TelaAbertura extends javax.swing.JFrame {
                 MenuInicial FecharTela = new MenuInicial();
                 FecharTela.setVisible(false); dispose();
             }
-            //criar tela de erro
+            else{
+                DadosInvalidos NovaTela = new DadosInvalidos();
+                NovaTela.setVisible(true);
+            }
         } catch (Exception ex) {
             Logger.getLogger(TelaAbertura.class.getName()).log(Level.SEVERE, null, ex);
         }

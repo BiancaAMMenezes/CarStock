@@ -4,11 +4,9 @@
  */
 package projeto_a3;
 
-import Models.Client;
 import Models.Employee;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.WindowConstants;
 
 /**
  *
@@ -46,7 +44,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         IconePassword = new javax.swing.JLabel();
         ImagemCadastro = new javax.swing.JLabel();
         TituloRegistro = new javax.swing.JLabel();
-        CaixaUsername = new javax.swing.JTextField();
         CaixaEmail = new javax.swing.JTextField();
         CaixaPhoneNumber = new javax.swing.JTextField();
         CaixaPassword = new javax.swing.JTextField();
@@ -180,14 +177,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         TituloRegistro.setForeground(new java.awt.Color(0, 0, 0));
         TituloRegistro.setText(" Register");
 
-        CaixaUsername.setText("Username");
-        CaixaUsername.setPreferredSize(new java.awt.Dimension(114, 22));
-        CaixaUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CaixaUsernameActionPerformed(evt);
-            }
-        });
-
         CaixaEmail.setText("Email");
         CaixaEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,8 +248,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(BotaoRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                                .addComponent(BotaoCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(CaixaUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(BotaoCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(65, 65, 65))
         );
         layout.setVerticalGroup(
@@ -273,9 +261,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addComponent(CaixaFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(CaixaLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(CaixaUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CaixaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(CaixaPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -301,10 +287,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoEsqueceuSenhaActionPerformed
 
-    private void CaixaUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CaixaUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CaixaUsernameActionPerformed
-
     private void CaixaEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CaixaEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CaixaEmailActionPerformed
@@ -320,18 +302,13 @@ public class TelaCadastro extends javax.swing.JFrame {
                     this.CaixaPhoneNumber.getText(), this.CaixaPassword.getText());
             employee.Register();
             System.out.println("Employee registred.");
+            ConfirmarRegistro NovaTela = new ConfirmarRegistro ();
+            NovaTela.setVisible(true);
+            TelaCadastro FecharTela = new TelaCadastro(); 
+            FecharTela.setVisible(false); dispose();
         } catch (Exception ex) {
             Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        ConfirmarRegistro NovaTela = new ConfirmarRegistro ();
-        NovaTela.setVisible(true);
-        
-        TelaCadastro FecharTela = new TelaCadastro(); 
-        FecharTela.setVisible(false); dispose();
-        
-        
+        }        
     }//GEN-LAST:event_BotaoRegisterMouseClicked
 
     private void BotaoRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoRegisterActionPerformed
@@ -398,7 +375,6 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JTextField CaixaPassword;
     private javax.swing.JTextField CaixaPhoneNumber;
     private javax.swing.JTextField CaixaSenha;
-    private javax.swing.JTextField CaixaUsername;
     private javax.swing.JTextField CaixadeEmail;
     private javax.swing.JCheckBox CheckBoxNewsletter;
     private javax.swing.JCheckBox CheckLembrarSenha;

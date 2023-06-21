@@ -5,6 +5,7 @@
 package Models;
 
 import static Connection.ConnectionFactory.CreateConnectionToMySql;
+import Service.Service;
 import java.sql.*;
 
 /**
@@ -17,6 +18,9 @@ public class Sale {
     private String Plate;
     private String Id_Employee;
     private String Cpf_Client;
+
+    public Sale() {
+    }
     
     public Sale(String Date, String Description, String Plate, String Id_Employee, String Cpf_Client) {
         this.Date = Date;
@@ -67,14 +71,20 @@ public class Sale {
     }
     
     public boolean Register() throws Exception{
-        Connection con = null;
-        Statement st = null;
-        con = CreateConnectionToMySql();
-        st = (Statement) con.createStatement();
+        Service service = new Service();      
         String query = String.format("INSERT INTO tb_sale (Date, Description, Plate, Id_Employee, Cpf_Client) "
                 + "VALUES ('%s','%s','%s','%s','%s')", this.Date, this.Description, this.Plate, this.Id_Employee, this.Cpf_Client);
-        System.out.println(query);
-        st.execute(query);
-        return true;
+        return service.Insert(query);
+    }
+    
+    public ResultSet GetSales() throws Exception {
+        try {
+            Service service = new Service();
+            return service.Select(
+                    "SELECT tb_sale.Id_Sale, tb_sale.Date, tb_sale.Description, tb_sale.Plate, tb_sale.Cpf_Client, tb_vehicle.Price FROM tb_sale LEFT JOIN tb_vehicle ON tb_sale.Plate=tb_vehicle.Plate");
+        } catch (Exception e) {
+            System.out.println("Connection failed. Error message: " + e.getMessage());
+            throw e;
+        }
     }
 }

@@ -5,8 +5,7 @@
 package projeto_a3;
 
 import Models.Client;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -15,6 +14,22 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
     public TelaCadastroCliente() {
         initComponents();
+        ShowClients();
+    }
+    
+    private void ShowClients() {
+        try {
+            Client client = new Client();
+            ResultSet result = client.GetClients();
+            ((DefaultTableModel) this.TabelaClientes.getModel()).setRowCount(0);
+            DefaultTableModel Tabela = (DefaultTableModel) this.TabelaClientes.getModel();
+            while (result.next()) {
+                Tabela.addRow(new Object[]{result.getString(1), result.getString(2), result.getString(3), 
+                    result.getString(4), result.getString(5)});
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -61,6 +76,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
         TextoBirth.setText("Birth Date:");
 
+        CaixaBirth.setText("yyyy-mm-dd eg.: 1990-12-30");
+
         TextoCPF.setText("CPF:");
 
         TextoAddress.setText("Address:");
@@ -90,7 +107,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "CPF", "Birth Date", "Email", "Address"
+                "CPF", "Name", "Email", "Birth Date", "Address"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -208,11 +225,10 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                     this.CaixaAddress.getText(), this.CaixaBirth.getText());
             client.Register();
             System.out.println("Client registred.");
+            ShowClients();
         } catch (Exception ex) {
             Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        DefaultTableModel Tabela = (DefaultTableModel) this.TabelaClientes.getModel();
-        Tabela.addRow(new Object[] {this.CaixaName.getText(), this.CaixaCPF.getText(),this.CaixaBirth.getText(), this.CaixaEmail.getText(), this.CaixaAddress.getText(),});
     }//GEN-LAST:event_BotaoRegisterActionPerformed
 
     public static void main(String args[]) {

@@ -5,6 +5,7 @@
 package Models;
 
 import static Connection.ConnectionFactory.CreateConnectionToMySql;
+import Service.Service;
 import java.sql.*;
 
 /**
@@ -71,13 +72,9 @@ public class Employee {
     
     public boolean VerifyRegistration(String email, String password) throws Exception {
         try {
-            Connection con = null;
-            Statement st = null;
-            ResultSet rs = null;
-            con = CreateConnectionToMySql();
-            st = (Statement) con.createStatement();
-            
-            rs = st.executeQuery("SELECT * FROM tb_employee WHERE Email = '" + email + "' AND password = '" + password + "'");
+            Service service = new Service();
+
+            ResultSet rs = service.Select("SELECT * FROM tb_employee WHERE Email = '" + email + "' AND password = '" + password + "'");
 
             if (rs.next()) {
                 System.out.println("Email and password are correct.");
@@ -94,15 +91,31 @@ public class Employee {
     }
     
     public boolean Register() throws Exception{
-        Connection con = null;
-        Statement st = null;
-        con = CreateConnectionToMySql();
-        st = (Statement) con.createStatement();
+        Service service = new Service();
         String query = String.format("INSERT INTO tb_employee (First_Name, Last_Name, Email, Phone_number, password) "
                 + "VALUES ('%s','%s','%s','%s','%s')", this.FirstName, 
                 this.LastName, this.Email, this.PhoneNumber, this.Password);
-        System.out.println(query);
-        st.execute(query);
-        return true;
+        return service.Insert(query);
+    }
+    
+    public boolean IsRegisteredEmployee(String id) throws Exception {
+        try {
+            Service service = new Service();
+
+            ResultSet rs = service.Select("SELECT * FROM tb_employee WHERE Id_Employee = '" + id + "'");
+
+            if (rs.next()) {
+                System.out.println("Employee id: " + id + " found.");
+                return true;
+            }
+            else{
+                System.out.println("Employee id: " + id + " not found.");
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Connection failed. Error message: " + e.getMessage());
+            throw e;
+        }
     }
 }

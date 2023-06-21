@@ -4,9 +4,8 @@
  */
 package Models;
 
-import static Connection.ConnectionFactory.CreateConnectionToMySql;
-import java.sql.Connection;
-import java.sql.Statement;
+import Service.Service;
+import java.sql.ResultSet;
 
 
 
@@ -34,6 +33,8 @@ public class Vehicle {
         this.Description = Description;
         this.Price = Price;
     }
+
+    public Vehicle() {}
     
     public String getPlate() {
         return Plate;
@@ -100,15 +101,42 @@ public class Vehicle {
     }
     
     public boolean Register() throws Exception{
-        Connection con = null;
-        Statement st = null;
-        con = CreateConnectionToMySql();
-        st = (Statement) con.createStatement();
+        Service service = new Service();
         String query = String.format("INSERT INTO tb_vehicle (Plate, Chassi, Model, Brand, Year, Color, Description, Price) "
                 + "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')", this.Plate, this.Chassi, this.Model, 
                 this.Brand, this.Year, this.Color, this.Description, this.Price);
-        System.out.println(query);
-        st.execute(query);
-        return true;
+        return service.Insert(query);
+    }
+    
+    public boolean IsRegisteredVehicle(String plate) throws Exception {
+        try {
+            Service service = new Service();
+
+            ResultSet rs = service.Select("SELECT * FROM tb_vehicle WHERE Plate = '" + plate + "'");
+
+            if (rs.next()) {
+                System.out.println("Vehicle plate: " + plate + " found.");
+                return true;
+            }
+            else{
+                System.out.println("Vehicle plate: " + plate + " not found.");
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Connection failed. Error message: " + e.getMessage());
+            throw e;
+        }
+    }
+    
+    public ResultSet GetVehicles() throws Exception {
+        try {
+            Service service = new Service();
+
+            return service.Select("SELECT * FROM tb_vehicle");
+        } catch (Exception e) {
+            System.out.println("Connection failed. Error message: " + e.getMessage());
+            throw e;
+        }
     }
 }

@@ -246,7 +246,6 @@
                               <EmptySpace pref="49" max="32767" attributes="0"/>
                               <Component id="BotaoCancel" min="-2" pref="105" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="CaixaUsername" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -264,9 +263,7 @@
               <Component id="CaixaFirstName" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="CaixaLastName" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="CaixaUsername" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="CaixaEmail" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="CaixaPhoneNumber" min="-2" max="-2" attributes="0"/>
@@ -308,17 +305,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value=" Register"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="CaixaUsername">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Username"/>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[114, 22]"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CaixaUsernameActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="CaixaEmail">
       <Properties>
