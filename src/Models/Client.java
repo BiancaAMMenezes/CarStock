@@ -4,7 +4,6 @@
  */
 package Models;
 
-import static Connection.ConnectionFactory.CreateConnectionToMySql;
 import Service.Service;
 import java.sql.*;
 
@@ -16,9 +15,7 @@ public class Client {
     
     private String Cpf;
     private String Name;
-    private String LastName;
     private String Email;
-    private String PhoneNumber;
     private String Address;
     private String BithDate;
 
@@ -26,7 +23,6 @@ public class Client {
         this.Cpf = Cpf;
         this.Name = Name;
         this.Email = Email;
-        this.PhoneNumber = PhoneNumber;
         this.Address = Address;
         this.BithDate = BithDate;
     }
@@ -51,28 +47,12 @@ public class Client {
         this.Name = Name;
     }
 
-    public String getLastName() {
-        return LastName;
-    }
-
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
-    }
-
     public String getEmail() {
         return Email;
     }
 
     public void setEmail(String Email) {
         this.Email = Email;
-    }
-
-    public String getPhoneNumber() {
-        return PhoneNumber;
-    }
-
-    public void setPhoneNumber(String PhoneNumber) {
-        this.PhoneNumber = PhoneNumber;
     }
 
     public String getAddress() {

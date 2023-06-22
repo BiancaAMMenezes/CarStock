@@ -4,7 +4,6 @@
  */
 package Models;
 
-import static Connection.ConnectionFactory.CreateConnectionToMySql;
 import Service.Service;
 import java.sql.*;
 
@@ -74,7 +73,7 @@ public class Employee {
         try {
             Service service = new Service();
 
-            ResultSet rs = service.Select("SELECT * FROM tb_employee WHERE Email = '" + email + "' AND password = '" + password + "'");
+            ResultSet rs = service.Select("SELECT * FROM tb_employee WHERE Email = '" + email + "' AND Password = '" + password + "'");
 
             if (rs.next()) {
                 System.out.println("Email and password are correct.");
@@ -92,7 +91,7 @@ public class Employee {
     
     public boolean Register() throws Exception{
         Service service = new Service();
-        String query = String.format("INSERT INTO tb_employee (First_Name, Last_Name, Email, Phone_number, password) "
+        String query = String.format("INSERT INTO tb_employee (First_Name, Last_Name, Email, Phone_number, Password) "
                 + "VALUES ('%s','%s','%s','%s','%s')", this.FirstName, 
                 this.LastName, this.Email, this.PhoneNumber, this.Password);
         return service.Insert(query);

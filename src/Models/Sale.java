@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Models;
-
-import static Connection.ConnectionFactory.CreateConnectionToMySql;
 import Service.Service;
 import java.sql.*;
 
